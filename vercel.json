@@ -1,8 +1,8 @@
 {
+  "buildCommand": "cd app && npm install && npx vite build",
+  "outputDirectory": "app/dist",
+  "framework": "vite",
   "rewrites": [
-    { "source": "/", "destination": "/api/health" },
-    { "source": "/api/webhook", "destination": "/api/webhook" },
-    { "source": "/api/stripe/webhook", "destination": "/api/stripe/webhook" },
-    { "source": "/api/(.*)", "destination": "/api" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
