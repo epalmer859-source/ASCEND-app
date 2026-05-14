@@ -1,3 +1,5 @@
+import { appendBgRef } from "./bgRef";
+
 type StorefrontResponse<T> = {
   data?: T;
   errors?: { message: string }[];
@@ -158,8 +160,9 @@ export async function createCartAndCheckout(lines: StorefrontCartLineInput[]): P
     throw new Error("Shopify did not return checkoutUrl.");
   }
 
-  window.location.href = checkoutUrl;
-  return checkoutUrl;
+  const finalUrl = appendBgRef(checkoutUrl);
+  window.location.href = finalUrl;
+  return finalUrl;
 }
 
 async function storefrontRequest<TData>(
@@ -285,5 +288,5 @@ export async function createStorefrontCartAndGetCheckoutUrl(
   }
   const url = result.cart?.checkoutUrl;
   if (!url) throw new Error("Shopify did not return checkoutUrl.");
-  return url;
+  return appendBgRef(url);
 }

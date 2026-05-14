@@ -1,3 +1,5 @@
+import { appendBgRef } from "./bgRef";
+
 export const SHOPIFY_DOMAIN = "https://ascend-12496.myshopify.com";
 
 export const SYSTEM_SINGLE_VARIANT_ID = "52974558019797";
@@ -43,7 +45,7 @@ export function buildCartPermalink(items: ShopifyCheckoutItem[]): string {
     return "";
   }
 
-  return `${SHOPIFY_DOMAIN}/cart/${normalizedLineItems.join(",")}`;
+  return appendBgRef(`${SHOPIFY_DOMAIN}/cart/${normalizedLineItems.join(",")}`);
 }
 
 export function redirectToShopifyCheckout(items: ShopifyCheckoutItem[]): void {
@@ -68,7 +70,7 @@ export function redirectToSystemThreeItem(): void {
 }
 
 export function getProductUrlByHandle(handle: string): string {
-  return `${SHOPIFY_DOMAIN}/products/${handle}`;
+  return appendBgRef(`${SHOPIFY_DOMAIN}/products/${handle}`);
 }
 
 export function redirectToShopifySubscriptionProduct(handle: string): void {
